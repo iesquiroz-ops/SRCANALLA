@@ -1,0 +1,6 @@
+coleccion;producto;nombre;precio;claim;materiales;colores;tallas;orden;destacado;vistas
+dr-matanza;lamina;Lámina trepanación;20.00;Real y macabra, como la muerte misma;Papel kraft 400 g/m²;unico;;1;no;1
+dr-matanza;gafas;Gafas de sol explorer;69.00;Protege tu mirada o la perderás;Plástico ABS y protección UV;piel-negra|piel-marron;;2;si;
+dr-matanza;guantes;Guantes vintage piel;89.00;Aprieta sin miedo y con estilo;Piel bovina perforada y transpirable;marron|negro;S|M|L|XL|XXL;3;no;
+dr-matanza;bolsa-pierna;Bolsa de pierna Dr. Matanza;59.00;Lo imprescindible, siempre a mano;Piel envejecida · Herrajes de latón;marron|negro;;4;no;
+dr-matanza;placa-metal;Placa metálica Dr. Matanza;19.00;Decora sin miedo ni vergüenza;Metal · 20 × 30 cm;marron|beige;;5;no;

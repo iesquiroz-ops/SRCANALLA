@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Colección · Sr. Canalla</title>
+<meta name="description" content="Sr. Canalla: camisetas, chalecos y cazadoras de inspiración motera y Día de Muertos.">
+<link rel="preload" href="img/cabecera.webp" as="image" media="(min-width:820px)">
+<link rel="preload" href="fonts/oldstd.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/styles.css?v=4">
+<link rel="stylesheet" href="css/marketplace.css?v=4">
+</head>
+<body class="mk">
+
+<div class="mk-escena">
+  <header class="sec mk-cab">
+    <div class="lienzo">
+      <a class="abs logo-v" href="index.html" aria-label="Sr. Canalla, inicio"><img class="fit" src="img/logo-vertical.webp" alt="" width="362" height="1433"></a>
+      <nav class="abs nav caps" aria-label="Principal">
+        <a href="index.html#colecciones">Colecciones</a>
+        <a class="ext" href="index.html#universo">Universo</a>
+        <a class="ext" href="#contacto">Contacto</a>
+        <button type="button" class="carro js-bolsa" aria-label="Bolsa, 0 artículos"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M1.8 2.8h3l2.7 11.6a1.6 1.6 0 0 0 1.6 1.2h8.7a1.6 1.6 0 0 0 1.5-1.2L21.4 6.6H5.9"/><circle cx="9.6" cy="20.2" r="1.5"/><circle cx="17.8" cy="20.2" r="1.5"/></svg><span class="carro__n js-bolsa-n" hidden>0</span></button>
+      </nav>
+      <a class="abs logo" href="index.html" aria-label="Sr. Canalla, inicio"><img class="fit" src="img/logo-principal.webp" alt="Sr. Canalla" width="1379" height="968"></a>
+    </div>
+  </header>
+
+  <main class="mk-panel papel" id="marketplace">
+    <!-- Panel izquierdo: título e ilustración de la colección -->
+    <aside class="mk-portada">
+      <h1 class="mk-portada__titulo"><img class="js-col-titulo" src="" alt=""></h1>
+      <img class="mk-portada__ilus js-col-ilus" src="" alt="">
+    </aside>
+
+    <div class="mk-cuerpo">
+      <!-- Ficha de producto -->
+      <section class="mk-ficha js-ficha" aria-live="polite">
+        <div class="mk-galeria">
+          <div class="mk-galeria__principal js-ampliar" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Ampliar imagen"><img class="js-foto" src="" alt=""></div>
+          <div class="mk-galeria__minis js-minis" role="group" aria-label="Vistas del producto"></div>
+        </div>
+
+        <div class="mk-info">
+          <p class="mk-info__col caps js-col-eyebrow">Colección</p>
+          <h2 class="mk-info__nombre js-nombre"></h2>
+          <p class="mk-info__precio js-precio"></p>
+          <p class="mk-info__claim js-claim"></p>
+          <p class="mk-info__mat js-mat"></p>
+
+          <div class="mk-opcion js-op-color">
+            <span class="mk-opcion__lbl">Color: <b class="js-color-nombre"></b></span>
+            <div class="mk-colores js-colores" role="radiogroup" aria-label="Color"></div>
+          </div>
+
+          <div class="mk-opcion js-op-talla">
+            <span class="mk-opcion__lbl">Talla:</span>
+            <div class="mk-tallas js-tallas" role="radiogroup" aria-label="Talla"></div>
+          </div>
+          <button type="button" class="mk-guia js-guia">Guía de tallas</button>
+
+          <div class="mk-compra">
+            <div class="mk-cant" role="group" aria-label="Cantidad">
+              <button type="button" class="js-menos" aria-label="Quitar uno">−</button>
+              <output class="js-cant" aria-live="polite">1</output>
+              <button type="button" class="js-mas" aria-label="Añadir uno">+</button>
+            </div>
+            <button type="button" class="mk-anadir caps js-anadir">Añadir a la cesta</button>
+          </div>
+          <p class="mk-stock">En stock · Envío en 3–5 días</p>
+        </div>
+      </section>
+
+      <!-- Resto de la colección -->
+      <section class="mk-mas js-mas-col" aria-labelledby="mk-mas-t">
+        <h3 class="mk-mas__t caps" id="mk-mas-t"><span>Más de la colección</span></h3>
+        <div class="mk-carrusel">
+          <button type="button" class="mk-flecha mk-flecha--izq js-prev" aria-label="Anteriores">
+            <svg viewBox="0 0 12 24" aria-hidden="true"><path d="M10 2 2 12l8 10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </button>
+          <div class="mk-ventana"><ul class="mk-pista js-pista"></ul></div>
+          <button type="button" class="mk-flecha mk-flecha--der js-next" aria-label="Siguientes">
+            <svg viewBox="0 0 12 24" aria-hidden="true"><path d="m2 2 8 10-8 10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Colección sin productos todavía -->
+      <section class="mk-vacia js-vacia" hidden>
+        <p class="mk-info__col caps js-col-eyebrow">Colección</p>
+        <h2 class="mk-vacia__t">En el taller</h2>
+        <p class="mk-vacia__txt">Esta colección todavía se está cosiendo. Vuelve pronto o echa un ojo a las demás.</p>
+        <a class="btn mk-vacia__btn caps" href="index.html#colecciones">Ver colecciones <span class="fl" aria-hidden="true">⟶</span></a>
+      </section>
+    </div>
+  </main>
+
+  <div class="mk-franja" role="presentation"></div>
+</div>
+
+<footer class="sec pie papel" id="contacto">
+  <div class="lienzo">
+    <a class="abs logo-pie" href="index.html" aria-label="Sr. Canalla, inicio"><img class="fit" src="img/logo-pie.webp" alt="" width="1795" height="556" loading="lazy"></a>
+    <span class="abs linea" aria-hidden="true"></span>
+    <div class="abs links caps">
+      <span>© <span class="js-anio">2026</span> Sr. Canalla</span>
+      <a href="#aviso-legal">Aviso legal</a>
+      <a href="#privacidad">Privacidad</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#">Volver arriba ↑</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Visor ampliado de producto (paspartú) -->
+<dialog class="mk-visor js-visor" aria-label="Imagen ampliada">
+  <figure class="mk-visor__marco">
+    <div class="mk-visor__ventana"><img class="js-visor-img" src="" alt=""></div>
+  </figure>
+  <button type="button" class="mk-visor__cerrar js-visor-cerrar" aria-label="Cerrar">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+  </button>
+</dialog>
+
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="js/main.js?v=4"></script>
+<script src="js/catalogo.js?v=5"></script>
+<script src="js/marketplace.js?v=4"></script>
+</body>
+</html>

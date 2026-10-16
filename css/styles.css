@@ -1,0 +1,191 @@
+/* Sr. Canalla — portada v2
+   Escritorio: lienzo proporcional al mockup de referencia (724 px de ancho).
+   1 unidad del mockup = var(--k). Todas las medidas salen del mockup.
+   Móvil (<820px): composición apilada con las mismas piezas. */
+
+@font-face{font-family:"Stint";src:url(../fonts/stint.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Old Standard";src:url(../fonts/oldstd.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Old Standard";src:url(../fonts/oldstd-700.woff2) format("woff2");font-weight:700;font-display:swap}
+
+:root{
+  --altar:#0b0806;
+  --hueso:#e9dcc3;
+  --tinta:#1d1813;
+  --sangre:#7a1d1b;
+  --vela:#dccdb0;
+  --f-rotulo:"Stint","Arial Narrow",serif;
+  --f-texto:"Old Standard",Georgia,serif;
+  --k:calc(min(100vw,1920px) / 724);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:clip;background:var(--altar);color:var(--tinta);font-family:var(--f-texto);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:none}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--sangre);outline-offset:3px}
+h1,h2,p{margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Sección y lienzo */
+.sec{position:relative;width:100%;overflow:hidden;height:calc(var(--k) * var(--h))}
+.lienzo{position:relative;height:100%;width:calc(var(--k) * 724);margin:0 auto}
+.abs{position:absolute;left:calc(var(--k) * var(--x));top:calc(var(--k) * var(--y));width:calc(var(--k) * var(--w));height:calc(var(--k) * var(--hh))}
+.fit{object-fit:contain;width:100%;height:100%}
+.papel{background:var(--hueso) url(../img/papel.webp) center/calc(var(--k) * 420) repeat}
+
+/* Textos pequeños */
+.caps{font-family:var(--f-texto);text-transform:uppercase;letter-spacing:.2em;white-space:nowrap}
+
+/* Botón */
+.btn{display:flex;align-items:center;justify-content:center;gap:.8em;border:1px solid currentColor;font-size:calc(var(--k) * 8.7);font-weight:700;transition:background .25s,color .25s}
+.btn .fl{display:inline-block;transition:transform .25s}
+.btn:hover .fl{transform:translateX(.4em)}
+.papel .btn:hover{background:var(--tinta);color:var(--hueso)}
+.hero .btn:hover{background:var(--vela);color:var(--altar)}
+
+/* ---------- CABECERA ---------- */
+.hero{--h:406;background:linear-gradient(90deg,transparent 52%,rgba(8,6,4,.45) 64%,rgba(8,6,4,.62) 100%),var(--altar) url(../img/cabecera.webp) center/cover no-repeat;color:var(--vela)}
+.hero .logo-v{--x:17;--y:13;--w:34;--hh:88}
+.nav{--x:432;--y:18;--w:271;--hh:23;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid rgba(220,205,176,.8);font-size:calc(var(--k) * 8);font-weight:700}
+.nav a,.nav button{font:inherit;letter-spacing:.16em;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-transform:uppercase}
+.nav a:hover,.nav button:hover{color:#fff}
+.nav{line-height:1.25}
+.nav .carro{position:relative;display:inline-flex;align-items:center;height:1.25em;margin-top:-.08em}
+.nav .carro svg{height:1.3em;width:1.3em;display:block}
+.nav .carro__n{position:absolute;top:-.55em;right:-.75em;font-size:.75em;letter-spacing:0}
+.hero .logo{--x:446;--y:62;--w:250;--hh:228}
+.hero .sub{--x:440;--y:301;--w:260;--hh:14;display:flex;justify-content:center;gap:1.1em;font-size:calc(var(--k) * 9.8);letter-spacing:.1em;font-weight:700;color:var(--hueso)}
+.hero .btn{--x:468;--y:332;--w:208;--hh:32;color:var(--hueso)}
+
+/* ---------- ÍNDICE ---------- */
+.indice{--h:123}
+.indice .lbl{--x:36;--y:21;--w:150;--hh:12;font-size:calc(var(--k) * 7.6);letter-spacing:.22em}
+.indice .linea{--x:192;--y:27;--w:496;--hh:1;background:rgba(29,24,19,.6)}
+.indice .div1{--x:197;--y:45;--w:1;--hh:60;background:rgba(29,24,19,.55)}
+.indice .div2{--x:365;--y:45;--w:1;--hh:60;background:rgba(29,24,19,.55)}
+.indice .item{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:calc(var(--k) * 4)}
+.indice .div3{--x:533;--y:45;--w:1;--hh:60;background:rgba(29,24,19,.55)}
+.indice .i1{--x:30;--y:49;--w:167;--hh:50}
+.indice .i2{--x:198;--y:49;--w:167;--hh:50}
+.indice .i3{--x:366;--y:49;--w:167;--hh:50}
+.indice .i4{--x:534;--y:49;--w:167;--hh:50}
+.indice .num{font-family:var(--f-texto);color:var(--sangre);font-size:calc(var(--k) * 15);line-height:1}
+.indice .nom{font-family:var(--f-rotulo);font-size:calc(var(--k) * 24);line-height:1;letter-spacing:.07em;text-transform:uppercase;-webkit-text-stroke:calc(var(--k) * .95) var(--tinta);white-space:nowrap}
+.indice .item:hover .nom{color:var(--sangre);-webkit-text-stroke-color:var(--sangre)}
+
+/* ---------- FRANJAS ---------- */
+.franja{background-size:cover;background-repeat:no-repeat;background-position:center}
+.f1{--h:96;background-image:url(../img/franja-1.webp);background-position:center 62%}
+.f2{--h:87;background-image:url(../img/franja-2.webp);background-position:center 55%}
+.f3{--h:90;background-image:url(../img/franja-3.webp);background-position:center 50%}
+.f5{--h:90;background-image:url(../img/franja-5.webp);background-position:center 62%}
+.f4{--h:151;background-image:url(../img/franja-4.webp);background-position:center 55%}
+
+/* ---------- COLECCIONES ---------- */
+.col .ilus img{width:100%;height:100%;object-fit:cover}
+.col .eyebrow{display:flex;align-items:baseline;justify-content:center;gap:.9em;font-size:calc(var(--k) * 9.4);letter-spacing:.2em}
+.col .eyebrow b{font-weight:700;font-size:2.1em;letter-spacing:.02em;color:var(--sangre);line-height:1}
+.col .orla{color:var(--tinta)}
+.col .raya{background:var(--tinta)}
+.col .btn{color:var(--tinta)}
+
+/* La Catrina: sección 625–1036 */
+.catrina{--h:411}
+.catrina .ilus{--x:-46;--y:-36;--w:520;--hh:520}
+.catrina .eyebrow{--x:470;--y:54;--w:210;--hh:24}
+.catrina .orla{--x:523;--y:96;--w:104;--hh:12}
+.catrina .titulo{--x:430;--y:123;--w:273;--hh:182}
+.catrina .raya{--x:548;--y:317;--w:55;--hh:1.2}
+.catrina .btn{--x:489;--y:341;--w:173;--hh:33}
+
+/* Calavera Veloz: sección 1123–1537 */
+.calavera{--h:414}
+.calavera .ilus{--x:252;--y:-30;--w:530;--hh:516}
+.calavera .eyebrow{--x:60;--y:47;--w:180;--hh:24}
+.calavera .orla{--x:120;--y:93;--w:52;--hh:12}
+.calavera .titulo{--x:8;--y:112;--w:304;--hh:222}
+.calavera .btn{--x:62;--y:340;--w:174;--hh:34}
+
+/* Dr. Matanza: sección 1627–1935 */
+.matanza{--h:308}
+.matanza .ilus{--x:8;--y:-14;--w:364;--hh:360}
+.matanza .eyebrow{--x:450;--y:51;--w:210;--hh:24}
+.matanza .orla{--x:512;--y:89;--w:74;--hh:12}
+.matanza .titulo{--x:398;--y:108;--w:301;--hh:103}
+.matanza .raya{--x:525;--y:225;--w:55;--hh:1.2}
+.matanza .btn{--x:462;--y:239;--w:175;--hh:32}
+
+/* La Llorona: misma altura que Dr. Matanza, en espejo (imagen a la derecha) */
+.llorona{--h:308}
+.llorona .ilus{--x:322;--y:-22;--w:410;--hh:361}
+.llorona .ilus img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%);mask-image:linear-gradient(90deg,transparent 0,#000 22%)}
+.llorona .eyebrow{--x:70;--y:42;--w:210;--hh:24}
+.llorona .orla{--x:138;--y:80;--w:74;--hh:12}
+.llorona .titulo{--x:27;--y:96;--w:297;--hh:122}
+.llorona .raya{--x:148;--y:227;--w:55;--hh:1.2}
+.llorona .btn{--x:88;--y:240;--w:175;--hh:32}
+
+/* ---------- PIE ---------- */
+.pie{--h:86}
+.pie .logo-pie{--x:30;--y:22;--w:124;--hh:40}
+.pie .linea{--x:232;--y:30;--w:458;--hh:1;background:rgba(29,24,19,.55)}
+.pie .links{--x:300;--y:43;--w:395;--hh:12;display:flex;justify-content:flex-end;align-items:center;font-size:calc(var(--k) * 6.6);letter-spacing:.14em}
+.pie .links>*{padding-inline:1.3em}
+.pie .links>*+*{border-left:1px solid rgba(29,24,19,.6)}
+.pie .links>:last-child{padding-right:0}
+.pie a:hover{color:var(--sangre)}
+
+/* Aviso */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;z-index:20;background:var(--tinta);color:var(--hueso);padding:14px 22px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;transition:opacity .3s,transform .3s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ==================== MÓVIL ==================== */
+@media (max-width:819px){
+  :root{--m:calc(100vw / 390)}
+  .sec{height:auto}
+  .lienzo{width:auto;height:auto;padding-inline:16px;display:flex;flex-direction:column;align-items:center}
+  .abs{position:static;width:auto;height:auto}
+
+  .hero{background-image:url(../img/cabecera-movil.webp);background-position:center top;background-size:100% auto;background-color:var(--altar)}
+  .hero .lienzo{min-height:calc(var(--m) * 860);justify-content:flex-end;padding-bottom:40px;position:relative;background:linear-gradient(180deg,transparent 45%,rgba(11,8,6,.85) 72%,var(--altar) 100%)}
+  .hero .logo-v{position:absolute;left:16px;top:16px;width:calc(var(--m) * 30)}
+  .nav{position:absolute;right:16px;top:20px;gap:14px;border:0;font-size:10px;letter-spacing:.1em}
+  .nav .ext{display:none}
+  .hero .logo{width:min(82vw,420px)}
+  .hero .sub{margin-top:18px;font-size:11px;gap:.6em}
+  .hero .btn{margin-top:22px;padding:14px 26px;font-size:11px}
+
+  .indice .lienzo{padding-block:22px}
+  .indice .lbl{align-self:stretch;font-size:10px;display:flex;align-items:center;gap:14px}
+  .indice .lbl::after{content:"";flex:1;height:1px;background:rgba(29,24,19,.6)}
+  .indice .linea,.indice .div1,.indice .div2,.indice .div3{display:none}
+  .indice .item{flex-direction:row;gap:12px;padding:12px 0;align-self:stretch;justify-content:center;border-top:1px solid rgba(29,24,19,.25)}
+  .indice .i1{border-top:0;margin-top:8px}
+  .indice .num{font-size:18px}
+  .indice .nom{font-size:26px;-webkit-text-stroke-width:.5px}
+
+  .franja{height:calc(var(--m) * 92)}
+  .f4{height:calc(var(--m) * 130)}
+
+  .col .lienzo{padding-bottom:40px;gap:16px}
+  .col .ilus{width:calc(100% + 32px);aspect-ratio:1/1;margin-bottom:-6px}
+  .col .ilus img{object-fit:contain}
+  .matanza .ilus{aspect-ratio:1/1}
+  .col .eyebrow{font-size:12px}
+  .col .orla{width:110px;height:14px}
+  .col .titulo{width:min(86vw,420px)}
+  .matanza .titulo{width:min(90vw,440px)}
+  .llorona .titulo{width:min(88vw,430px)}
+  .llorona .ilus{aspect-ratio:1235/1086}
+  .llorona .ilus img{-webkit-mask-image:none;mask-image:none}
+  .col .raya{width:60px;height:1px}
+  .col .btn{padding:14px 26px;font-size:11px}
+
+  .pie .lienzo{padding-block:26px;gap:14px}
+  .pie .logo-pie{width:150px}
+  .pie .linea{display:none}
+  .pie .links{flex-wrap:wrap;justify-content:center;row-gap:10px;font-size:10px}
+  .pie .links>*{padding-inline:.9em}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}

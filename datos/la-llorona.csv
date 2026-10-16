@@ -1,0 +1,6 @@
+coleccion;producto;nombre;precio;claim;materiales;colores;tallas;orden;destacado;vistas
+la-llorona;cazadora;Cazadora de piel La Llorona;189.00;¡Ay, mis hijos!… y tú sin cazadora.;Piel envejecida · Forro interior · Cremalleras metálicas;negro|marron;XS|S|M|L|XL;1;si;
+la-llorona;chaleco-piel;Chaleco de piel La Llorona;119.00;Ella llora, tú ruedas.;Piel envejecida · Corte entallado;negro;XS|S|M|L|XL;2;si;
+la-llorona;sudadera;Sudadera sin mangas La Llorona;49.00;Abrígate, que la noche llora.;Algodón perchado · Capucha · Sin mangas;negro;XS|S|M|L|XL;3;no;
+la-llorona;camiseta-tirantes;Camiseta de tirantes La Llorona;25.00;Llora quien no la lleva.;Algodón canalé · Corte entallado;negro;XS|S|M|L|XL;4;no;
+la-llorona;braga-cuello;Braga de cuello La Llorona;15.00;Que el viento no te arranque el grito.;Microfibra elástica · Talla única;negro;;5;no;

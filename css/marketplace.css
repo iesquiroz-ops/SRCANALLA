@@ -1,0 +1,168 @@
+/* Sr. Canalla — marketplace (coleccion.html)
+   Se carga DESPUÉS de styles.css y reutiliza sus variables (--k, colores, fuentes).
+   Cabecera y pie: lienzo proporcional, igual que la home.
+   Panel central: grid fluido (texto, botones y estados no se escalan como una imagen). */
+
+/* ---------- ESCENA: fondo continuo detrás de cabecera, panel y franja ---------- */
+.mk-escena{position:relative;isolation:isolate;background:var(--altar);overflow:hidden}
+.mk-escena::before,.mk-escena::after{content:"";position:absolute;left:0;right:0;z-index:-1;pointer-events:none;background-repeat:no-repeat;background-position:center top}
+/* Altar de la cabecera (misma imagen y oscurecido que la home) */
+.mk-escena::before{top:0;aspect-ratio:1681/936;
+  background-image:linear-gradient(90deg,transparent 52%,rgba(8,6,4,.45) 64%,rgba(8,6,4,.62) 100%),url(../img/cabecera.webp);
+  background-size:100% 100%,100% auto;
+  -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 100%);mask-image:linear-gradient(180deg,#000 72%,transparent 100%)}
+/* Flores, calavera y velas: asoman por los lados del panel y en la franja inferior */
+.mk-escena::after{bottom:calc(var(--k) * -95);aspect-ratio:1920/819;background-image:url(../img/franja-1.webp);background-size:100% auto;background-position:center bottom;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 30%);mask-image:linear-gradient(180deg,transparent 0,#000 30%)}
+
+/* ---------- CABECERA ---------- */
+.mk-cab{--h:137;color:var(--vela);overflow:visible}
+.mk-cab .logo-v{--x:17;--y:13;--w:34;--hh:88;z-index:2}
+.mk-cab .logo{--x:512;--y:47;--w:112;--hh:80}
+
+/* ---------- PANEL ---------- */
+.mk-panel [hidden]{display:none!important}
+.mk-panel{position:relative;z-index:1;width:calc(var(--k) * 670);margin:0 auto;
+  display:grid;grid-template-columns:27.5% 1fr;
+  padding:calc(var(--k) * 12) calc(var(--k) * 14) calc(var(--k) * 14);
+  box-shadow:0 calc(var(--k) * 4) calc(var(--k) * 22) rgba(0,0,0,.55);
+  font-size:clamp(14px,calc(var(--k) * 8.6),21px)}
+
+/* Portada de la colección */
+.mk-portada{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:calc(var(--k) * 6);padding:calc(var(--k) * 6) calc(var(--k) * 10) 0 0}
+.mk-portada__titulo{width:96%}
+.mk-portada__titulo img{width:100%;height:auto}
+.mk-portada__ilus{width:100%;height:auto;filter:drop-shadow(0 4px 8px rgba(29,24,19,.18))}
+
+/* Cuerpo: ficha + carrusel */
+.mk-cuerpo{border-left:1px solid rgba(29,24,19,.45);padding-left:calc(var(--k) * 18);display:flex;flex-direction:column;gap:calc(var(--k) * 14);min-width:0}
+.mk-ficha{display:grid;grid-template-columns:46% 1fr;gap:calc(var(--k) * 14);align-items:start}
+
+/* Galería */
+.mk-galeria{display:flex;flex-direction:column;gap:calc(var(--k) * 6)}
+.mk-galeria__principal{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mk-galeria img{width:100%;height:100%;object-fit:contain;transition:opacity .25s}
+.mk-galeria img.cubre{object-fit:cover}
+.mk-galeria img.sombra,.mk-tarjeta img{filter:drop-shadow(0 6px 9px rgba(29,24,19,.28))}
+.mk-galeria img.cargando{opacity:0}
+.mk-galeria__minis[hidden]{display:none}
+.mk-galeria__minis{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--k) * 6)}
+.mk-mini{aspect-ratio:1/0.86;padding:0;border:1px solid rgba(29,24,19,.25);background:rgba(255,255,255,.12);cursor:pointer;overflow:hidden;transition:border-color .2s}
+.mk-mini img{width:100%;height:100%;object-fit:contain;filter:none!important}
+.mk-mini img.cubre{object-fit:cover}
+.mk-mini:hover{border-color:var(--tinta)}
+.mk-mini[aria-pressed="true"]{border:2px solid var(--sangre)}
+
+/* Información */
+.mk-info{display:flex;flex-direction:column;align-items:flex-start}
+.mk-info__col{display:flex;align-items:center;gap:1em;width:100%;font-size:.66em;letter-spacing:.24em;font-weight:700}
+.mk-info__col::after{content:"";flex:1;height:1px;background:rgba(29,24,19,.6)}
+.mk-info__nombre{margin:.25em 0 0;font-family:var(--f-texto);font-weight:700;font-size:2.75em;line-height:1;letter-spacing:-.015em}
+.mk-info__precio{margin-top:.2em;font-weight:700;font-size:1.6em;line-height:1.1}
+.mk-info__claim{margin-top:.5em;font-size:1.22em;line-height:1.2}
+.mk-info__mat{margin-top:.3em;font-size:.9em;opacity:.9}
+
+.mk-opcion{display:flex;align-items:center;gap:1em;margin-top:1em}
+.mk-opcion[hidden]{display:none}
+.mk-opcion__lbl{font-size:.95em;white-space:nowrap}
+.mk-opcion__lbl b{font-weight:400;text-transform:capitalize}
+.mk-colores{display:flex;gap:.7em}
+.mk-swatch{width:1.75em;height:1.75em;border-radius:50%;border:1px solid rgba(29,24,19,.55);padding:0;cursor:pointer;outline-offset:3px}
+.mk-swatch[aria-checked="true"]{outline:2px solid var(--tinta)}
+.mk-swatch--negro{background:#141110}
+.mk-swatch--blanco{background:#f3ece0}
+/* Pieles (gafas Dr. Matanza): un leve degradado para que se lea como cuero y no como color plano */
+.mk-swatch--piel-negra{background:radial-gradient(circle at 35% 30%,#3a332e,#151210 70%)}
+.mk-swatch--marron{background:#6b3a1f}
+.mk-swatch--beige{background:#d8c3a0}
+.mk-swatch--piel-marron{background:radial-gradient(circle at 35% 30%,#a5582f,#5e2a16 75%)}
+.mk-tallas{display:flex;flex-wrap:wrap;gap:.55em}
+.mk-talla{min-width:2.9em;height:2.1em;padding:0 .6em;border:1px solid rgba(29,24,19,.55);background:transparent;color:var(--tinta);font:inherit;font-size:.88em;cursor:pointer;transition:background .2s,color .2s}
+.mk-talla:hover{border-color:var(--tinta)}
+.mk-talla[aria-checked="true"]{background:var(--sangre);border-color:var(--sangre);color:var(--hueso)}
+.mk-guia{margin:.6em 0 0 3.6em;padding:0;border:0;background:none;color:inherit;font:inherit;font-size:.78em;text-decoration:underline;text-underline-offset:.2em;cursor:pointer}
+.js-op-talla[hidden]+.mk-guia{display:none}
+
+.mk-compra{display:flex;gap:.9em;align-items:stretch;width:100%;margin-top:1.2em}
+.mk-cant{display:flex;align-items:center;border:1px solid rgba(29,24,19,.55);flex:0 0 auto}
+.mk-cant button{width:2.2em;height:100%;border:0;background:none;font:inherit;font-size:1.1em;cursor:pointer;color:var(--tinta)}
+.mk-cant output{min-width:1.6em;text-align:center;font-size:1.05em}
+.mk-anadir{flex:1;min-height:2.75em;border:0;background:#4a0f10;color:var(--hueso);font:inherit;font-weight:700;font-size:.78em;letter-spacing:.24em;cursor:pointer;transition:background .2s}
+.mk-anadir:hover{background:var(--sangre)}
+.mk-stock{margin:.6em 0 0 calc(6em + .9em);font-size:.8em}
+
+/* Más de la colección */
+.mk-mas__t{display:flex;align-items:center;gap:1.2em;font-size:.66em;letter-spacing:.3em;font-weight:700;justify-content:center}
+.mk-mas__t::before,.mk-mas__t::after{content:"";flex:1;height:1px;background:rgba(29,24,19,.6)}
+.mk-carrusel{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:calc(var(--k) * 6);margin-top:calc(var(--k) * 8)}
+.mk-flecha{width:2em;height:3em;padding:0;border:0;background:none;color:var(--tinta);cursor:pointer;transition:opacity .2s,transform .2s}
+.mk-flecha svg{width:.85em;height:1.8em;display:block;margin:auto}
+.mk-flecha:hover:not(:disabled){transform:scale(1.15)}
+.mk-flecha:disabled{opacity:.2;cursor:default}
+.mk-ventana{overflow:hidden}
+.mk-pista{--vis:3;--gap:calc(var(--k) * 10);display:flex;gap:var(--gap);margin:0;padding:0;list-style:none;transition:transform .45s cubic-bezier(.3,.7,.2,1)}
+.mk-pista>li{flex:0 0 calc((100% - var(--gap) * (var(--vis) - 1)) / var(--vis))}
+.mk-tarjeta{display:flex;flex-direction:column;align-items:center;width:100%;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;text-align:center}
+.mk-tarjeta__img{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border:1px solid rgba(29,24,19,.22);background:rgba(255,255,255,.1);overflow:hidden;transition:border-color .2s}
+.mk-tarjeta img{width:88%;height:88%;object-fit:contain;transition:transform .35s}
+.mk-tarjeta:hover .mk-tarjeta__img{border-color:var(--tinta)}
+.mk-tarjeta:hover img{transform:scale(1.05)}
+.mk-tarjeta__n{margin-top:.55em;font-weight:700;font-size:.9em}
+.mk-tarjeta__p{font-weight:700;font-size:.8em}
+
+/* Colección vacía */
+.mk-vacia{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1em;min-height:calc(var(--k) * 300);max-width:30em}
+.mk-vacia__t{font-weight:700;font-size:2.4em;line-height:1}
+.mk-vacia__btn{color:var(--tinta);padding:.9em 1.6em;font-size:.72em}
+
+/* ---------- Visor ampliado: pop-up cuadrado con paspartú blanco ---------- */
+.mk-galeria__principal{cursor:zoom-in}
+.mk-galeria__principal:focus-visible{outline:2px solid var(--sangre);outline-offset:3px}
+html.mk-sin-scroll{overflow:hidden}
+.mk-visor{--lado:min(92vw,92vh);width:var(--lado);height:var(--lado);max-width:none;max-height:none;
+  padding:0;border:0;overflow:visible;background:#fbfaf7;color:var(--tinta);
+  box-shadow:0 18px 60px rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.08)}
+.mk-visor::backdrop{background:rgba(8,6,4,.82);backdrop-filter:blur(2px)}
+.mk-visor[open]{animation:mk-visor-in .28s cubic-bezier(.3,.7,.2,1)}
+.mk-visor[open]::backdrop{animation:mk-fade .28s ease}
+/* Paspartú: margen blanco generoso + ventana con bisel fino, como un marco de lámina */
+.mk-visor__marco{margin:0;width:100%;height:100%;padding:9%;box-sizing:border-box}
+.mk-visor__ventana{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;
+  box-shadow:inset 0 0 0 1px rgba(29,24,19,.28),inset 2px 2px 5px rgba(29,24,19,.16)}
+.mk-visor__ventana img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(29,24,19,.25))}
+.mk-visor__ventana img.cubre{object-fit:cover;filter:none}
+.mk-visor__cerrar{position:absolute;top:2.2%;right:2.2%;width:42px;height:42px;padding:9px;border:0;background:none;color:var(--tinta);cursor:pointer;transition:color .2s,transform .2s}
+.mk-visor__cerrar svg{display:block;width:100%;height:100%}
+.mk-visor__cerrar:hover{color:var(--sangre);transform:rotate(90deg)}
+.mk-visor__cerrar:focus-visible{outline:2px solid var(--sangre)}
+@keyframes mk-visor-in{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+@keyframes mk-fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.mk-visor[open],.mk-visor[open]::backdrop{animation:none}.mk-visor__cerrar:hover{transform:none}}
+
+/* Franja de separación */
+.mk-franja{height:calc(var(--k) * 50)}
+
+/* ==================== MÓVIL ==================== */
+@media (max-width:819px){
+  .mk-escena::before{aspect-ratio:auto;height:330px;background-image:linear-gradient(180deg,rgba(8,6,4,.1) 40%,rgba(8,6,4,.75) 100%),url(../img/cabecera-movil.webp);background-size:100% 100%,cover;background-position:center,center 18%}
+  .mk-escena::after{aspect-ratio:auto;height:260px;background-size:cover}
+  .mk-cab .lienzo{min-height:250px;justify-content:flex-end;padding-bottom:18px;position:relative}
+  .mk-cab .logo-v{position:absolute;left:16px;top:16px;width:30px}
+  .mk-cab .logo{width:min(46vw,200px)}
+
+  .mk-panel{width:auto;margin:0 10px;grid-template-columns:1fr;padding:18px 16px 26px;font-size:14px}
+  .mk-portada{flex-direction:row;align-items:center;justify-content:center;padding:0 0 14px;gap:10px;border-bottom:1px solid rgba(29,24,19,.35)}
+  .mk-portada__titulo{width:52%}
+  .mk-portada__ilus{width:40%}
+  .mk-cuerpo{border-left:0;padding:18px 0 0;gap:30px}
+  .mk-ficha{grid-template-columns:1fr;gap:20px}
+  .mk-galeria__principal{aspect-ratio:1/1}
+  .mk-info__nombre{font-size:2.2em}
+  .mk-guia{margin-left:3.9em}
+  .mk-stock{margin-left:0;align-self:center}
+  .mk-pista{--vis:2;--gap:12px}
+  .mk-carrusel{gap:2px}
+  .mk-flecha{width:1.6em}
+  .mk-vacia{min-height:0;padding:10px 0}
+  .mk-franja{height:90px}
+}
