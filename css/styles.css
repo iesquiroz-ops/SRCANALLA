@@ -129,9 +129,10 @@ h1,h2,p{margin:0}
 /* ---------- PIE ---------- */
 .pie{--h:86}
 .pie .logo-pie{--x:30;--y:22;--w:124;--hh:40}
-.pie .linea{--x:232;--y:30;--w:458;--hh:1;background:rgba(29,24,19,.55)}
-.pie .links{--x:300;--y:43;--w:395;--hh:12;display:flex;justify-content:flex-end;align-items:center;font-size:calc(var(--k) * 6.6);letter-spacing:.14em}
-.pie .links>*{padding-inline:1.3em}
+.pie .linea{--x:200;--y:30;--w:452;--hh:1;background:rgba(29,24,19,.55)}
+.pie .links{--x:170;--y:43;--w:482;--hh:12;display:flex;justify-content:flex-end;align-items:center;font-size:calc(var(--k) * 6.6);letter-spacing:.12em}
+.pie .links>*{padding-inline:1.05em}
+.pie .frk{--x:668;--y:19;--w:30;--hh:43;opacity:.88}
 .pie .links>*+*{border-left:1px solid rgba(29,24,19,.6)}
 .pie .links>:last-child{padding-right:0}
 .pie a:hover{color:var(--sangre)}
@@ -186,6 +187,10 @@ h1,h2,p{margin:0}
   .pie .logo-pie{width:150px}
   .pie .linea{display:none}
   .pie .links{flex-wrap:wrap;justify-content:center;row-gap:10px;font-size:10px}
-  .pie .links>*{padding-inline:.9em}
+  .pie .links{column-gap:1.6em}
+  .pie .links>*{padding-inline:0}
+  .pie .links>*+*{border-left:0}
+  .pie .frk{width:40px;height:auto;margin-top:6px}
+  .pie .frk img{height:auto}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
