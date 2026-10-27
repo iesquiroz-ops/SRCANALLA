@@ -3,6 +3,13 @@
   var anio = document.querySelector('.js-anio');
   if (anio) anio.textContent = new Date().getFullYear();
 
+  /* Correo de contacto: se monta al cargar para que no aparezca en claro en el HTML (antispam) */
+  document.querySelectorAll('.js-mail').forEach(function (a) {
+    var m = a.getAttribute('data-u') + '@' + a.getAttribute('data-d');
+    a.href = 'mailto:' + m;
+    if (a.hasAttribute('data-ver')) a.textContent = m;
+  });
+
   /* Aviso flotante */
   var toast = document.querySelector('.toast'), t;
   function avisar(msg) {
