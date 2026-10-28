@@ -7,11 +7,13 @@
 <meta name="description" content="Sr. Canalla: camisetas, chalecos y cazadoras de inspiración motera y Día de Muertos. Colecciones La Catrina, Calavera Veloz y Dr. Matanza.">
 <link rel="preload" href="img/cabecera.webp" as="image" media="(min-width:820px)">
 <link rel="preload" href="fonts/oldstd.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/styles.css?v=5">
+<link rel="stylesheet" href="css/styles.css?v=6">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="orla" viewBox="0 0 104 12" preserveAspectRatio="xMidYMid meet"><g fill="none" stroke="currentColor" stroke-width="1.3"><path d="M0 7h36M68 7h36"/><path d="M36 7c4-4 9-4 10 0-1 3-4 3-5 1M68 7c-4-4-9-4-10 0 1 3 4 3 5 1"/></g><path d="M52 0l3.2 7L52 12 48.8 7z" fill="currentColor"/><circle cx="34" cy="7" r="1" fill="currentColor"/><circle cx="70" cy="7" r="1" fill="currentColor"/></symbol>
+  <symbol id="ico-play" viewBox="0 0 24 24"><path d="M9 7.2v9.6L16.6 12z" fill="currentColor"/></symbol>
+  <symbol id="ico-pausa" viewBox="0 0 24 24"><path d="M8.6 7.2h2.3v9.6H8.6zM13.1 7.2h2.3v9.6h-2.3z" fill="currentColor"/></symbol>
 </svg>
 
 <header class="sec hero">
@@ -19,7 +21,7 @@
     <a class="abs logo-v" href="#" aria-label="Sr. Canalla, inicio"><img class="fit" src="img/logo-vertical.webp" alt="" width="362" height="1433"></a>
     <nav class="abs nav caps" aria-label="Principal">
       <a href="#colecciones">Colecciones</a>
-      <a class="ext" href="#universo">Universo</a>
+      <a class="ext" href="#sonora-canalla">Sonora Canalla</a>
       <a class="ext js-mail" href="#contacto" data-u="freakkie" data-d="hotmail.com">Contacto</a>
       <button type="button" class="carro js-bolsa" aria-label="Bolsa, 0 artículos"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M1.8 2.8h3l2.7 11.6a1.6 1.6 0 0 0 1.6 1.2h8.7a1.6 1.6 0 0 0 1.5-1.2L21.4 6.6H5.9"/><circle cx="9.6" cy="20.2" r="1.5"/><circle cx="17.8" cy="20.2" r="1.5"/></svg><span class="carro__n js-bolsa-n" hidden>0</span></button>
     </nav>
@@ -95,7 +97,40 @@
     </div>
   </section>
 
-  <div class="sec franja f4" role="presentation"></div>
+  <div class="sec franja f6" role="presentation"></div>
+
+  <section class="sonora" id="sonora-canalla" aria-labelledby="t-sonora">
+    <div class="sec sc-cab papel">
+      <div class="lienzo">
+        <span class="abs sc-l sc-l1" aria-hidden="true"></span>
+        <svg class="abs sc-orla sc-o1" aria-hidden="true"><use href="#orla"/></svg>
+        <h2 class="abs sc-titulo" id="t-sonora"><img class="fit" src="img/titulo-sonora-canalla.webp" alt="Sonora Canalla" width="2034" height="535" loading="lazy"></h2>
+        <svg class="abs sc-orla sc-o2" aria-hidden="true"><use href="#orla"/></svg>
+        <span class="abs sc-l sc-l2" aria-hidden="true"></span>
+        <p class="abs sc-sub">El universo canalla tiene banda sonora.</p>
+      </div>
+    </div>
+    <div class="sec sc-juke">
+      <div class="lienzo">
+        <div class="abs sc-panel js-sonora">
+          <ol class="sc-lista" aria-label="Canciones">
+          <li><button type="button" class="sc-fila js-sc-fila" data-src="audio/sonora/a1_la-catrina.mp3" aria-pressed="false"><span class="sc-cod">A1</span><span class="sc-tit">La Catrina</span><span class="sc-ico" aria-hidden="true"><svg><use href="#ico-play"/></svg></span></button></li>
+          <li><button type="button" class="sc-fila js-sc-fila" data-src="audio/sonora/a2_calavera-veloz.mp3" aria-pressed="false"><span class="sc-cod">A2</span><span class="sc-tit">Calavera Veloz</span><span class="sc-ico" aria-hidden="true"><svg><use href="#ico-play"/></svg></span></button></li>
+          <li><button type="button" class="sc-fila js-sc-fila" data-src="audio/sonora/b1_dr-matanza.mp3" aria-pressed="false"><span class="sc-cod">B1</span><span class="sc-tit">Dr. Matanza</span><span class="sc-ico" aria-hidden="true"><svg><use href="#ico-play"/></svg></span></button></li>
+          <li><button type="button" class="sc-fila js-sc-fila" data-src="audio/sonora/b2_la-llorona.mp3" aria-pressed="false"><span class="sc-cod">B2</span><span class="sc-tit">La Llorona</span><span class="sc-ico" aria-hidden="true"><svg><use href="#ico-play"/></svg></span></button></li>
+          </ol>
+          <p class="sc-lema">Elige tu canción. <span>Sin monedas. Sin pedir permiso.</span></p>
+          <div class="sc-mandos">
+            <button type="button" class="sc-btn js-sc-ant" aria-label="Canción anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5.5h2.2v13H6zM19 5.5v13L9.6 12z" fill="currentColor"/></svg></button>
+            <button type="button" class="sc-btn sc-btn--pp js-sc-pp" aria-label="Reproducir"><svg aria-hidden="true"><use href="#ico-play"/></svg></button>
+            <button type="button" class="sc-btn js-sc-sig" aria-label="Canción siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.8 5.5H18v13h-2.2zM5 5.5v13l9.4-6.5z" fill="currentColor"/></svg></button>
+          </div>
+          <input class="sc-barra js-sc-barra" type="range" min="0" max="1000" step="1" value="0" aria-label="Posición de la canción" disabled>
+          <audio class="js-sc-audio" preload="none"></audio>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="sec pie papel" id="contacto">
@@ -115,6 +150,6 @@
 </footer>
 
 <div class="toast" role="status" aria-live="polite"></div>
-<script src="js/main.js?v=5"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>
