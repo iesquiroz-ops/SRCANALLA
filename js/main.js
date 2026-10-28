@@ -58,3 +58,60 @@
 
   window.SrCanalla = { avisar: avisar, bolsa: { anadir: anadir, contar: contar }, euros: euros };
 })();
+
+/* Sonora Canalla: jukebox. Solo suena lo que elige el visitante; al acabar, se para. */
+(function () {
+  var panel = document.querySelector('.js-sonora');
+  if (!panel) return;
+  var audio = panel.querySelector('.js-sc-audio');
+  var filas = [].slice.call(panel.querySelectorAll('.js-sc-fila'));
+  var pp = panel.querySelector('.js-sc-pp');
+  var barra = panel.querySelector('.js-sc-barra');
+  var actual = -1, arrastrando = false;
+
+  function icono(el, nombre) { var u = el.querySelector('use'); if (u) u.setAttribute('href', '#ico-' + nombre); }
+  function pintar() {
+    var suena = actual > -1 && !audio.paused;
+    filas.forEach(function (f, i) {
+      var esta = i === actual;
+      f.classList.toggle('on', esta);
+      f.setAttribute('aria-pressed', esta && suena ? 'true' : 'false');
+      icono(f, esta && suena ? 'pausa' : 'play');
+    });
+    icono(pp, suena ? 'pausa' : 'play');
+    pp.setAttribute('aria-label', suena ? 'Pausar' : 'Reproducir');
+    barra.disabled = actual < 0;
+  }
+  function posicion(v) { barra.value = v; barra.style.setProperty('--p', (v / 10) + '%'); }
+  function parar() { actual = -1; audio.pause(); audio.removeAttribute('src'); audio.load(); posicion(0); pintar(); }
+  function tocar(i) {
+    if (i === actual) { if (audio.paused) audio.play().catch(fallo); else audio.pause(); return; }
+    actual = i; posicion(0);
+    audio.src = filas[i].getAttribute('data-src');
+    audio.play().catch(fallo);
+    pintar();
+  }
+  function fallo(e) {
+    if (e && e.name === 'AbortError') return;
+    parar();
+    if (window.SrCanalla) SrCanalla.avisar('Esta canción aún no está disponible');
+  }
+
+  filas.forEach(function (f, i) { f.addEventListener('click', function () { tocar(i); }); });
+  pp.addEventListener('click', function () { tocar(actual < 0 ? 0 : actual); });
+  panel.querySelector('.js-sc-ant').addEventListener('click', function () { tocar(actual <= 0 ? filas.length - 1 : actual - 1); });
+  panel.querySelector('.js-sc-sig').addEventListener('click', function () { tocar(actual < 0 || actual === filas.length - 1 ? 0 : actual + 1); });
+
+  audio.addEventListener('play', pintar);
+  audio.addEventListener('pause', pintar);
+  audio.addEventListener('ended', parar);
+  audio.addEventListener('error', function () { if (actual > -1 && audio.getAttribute('src')) fallo(); });
+  audio.addEventListener('timeupdate', function () {
+    if (!arrastrando && audio.duration) posicion(Math.round(audio.currentTime / audio.duration * 1000));
+  });
+  barra.addEventListener('input', function () { arrastrando = true; posicion(barra.value); });
+  barra.addEventListener('change', function () {
+    arrastrando = false;
+    if (audio.duration) audio.currentTime = barra.value / 1000 * audio.duration;
+  });
+})();
